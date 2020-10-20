@@ -2,19 +2,22 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>标题</title>
+    <title>v-text</title>
     <script src="../js/vue.min.js"></script>
 </head>
 <body>
 <div id="app">
-
+    <span>{{msg}}</span>
+    <hr>
+    <span v-text="msg">乱七八糟的</span>
 </div>
 
 <script>
     new Vue({
         el: "#app",
-        data: {},
-        methods: {},
+        data: {
+            msg:"这是今晚的作业",
+        },
     })
 </script>
 </body>

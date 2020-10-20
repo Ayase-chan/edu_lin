@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>v-html</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h4>{{msg}}</h4>
+    <h4 v-html="msg"></h4>
+    <h4 v-html="inp"></h4>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg:'<a href="https://www.baidu.com">百度一下，你就知道</a>',
+            inp:'<input type="text" placeholder="请输入内容">'
+        },
+        methods: {},
+    })
+</script>
+</body>
+</html>

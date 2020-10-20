@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>事件注册</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3>当前车速：{{speed}} km/h</h3>
+    <button v-on:click="speedup">加速</button>
+    <button v-on:click="throttlestop">马失前蹄</button>
+    <hr>
+    <h3>重力加速度：{{g}} m/s^2</h3>
+    <button @click="add">地球</button>
+    <button @click="minus">月球</button>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            speed:233,
+            g:9.8
+        },
+        methods: {
+            speedup:function (){
+                this.speed++;
+            },
+            throttlestop:function (){
+                this.speed--;
+            },
+            add() {
+                this.g++;
+            },
+            minus() {
+                this.g--;
+            }
+        },
+    })
+</script>
+</body>
+</html>
