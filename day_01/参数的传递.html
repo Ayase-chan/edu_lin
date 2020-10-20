@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>参数的传递</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3>{{number}}</h3>
+    <button @click="change(18)">改变</button>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            number:20
+        },
+        methods: {
+            change(num) {
+                this.number = num;
+            },
+        },
+    })
+</script>
+</body>
+</html>

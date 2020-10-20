@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>标题</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3 v-show="true">{{msg}}</h3>
+    <h3 v-show="visable">{{msg}}</h3>
+    <button @click="change">change</button>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg:'旧时王谢堂前燕，飞入寻常百姓家',
+            visable:false,
+        },
+        methods: {
+            change() {
+                this.visable = !this.visable
+            }
+        },
+    })
+</script>
+</body>
+</html>
