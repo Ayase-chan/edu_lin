@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>循环</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="i in arr">{{i}}</li>
+    </ul>
+    <hr>
+    <ul>
+        <li v-for="prop in car">{{prop}}</li>
+    </ul>
+    <hr>
+    <ul>
+        <li v-for="prop in car">{{prop}}</li>
+    </ul>
+    <p v-for="(element, index, key) in list":key="index">{{element}}, {{index}}, {{key}}</p>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            car:{name:'车车', 'weight':'2t'},
+            arr:['lin', 'wu', 'jin', 'wang', 'fan'],
+            list:[
+                {name:'林强', age:'12'},
+                {name:'樊璟', age:'21'},
+                {name:'王超', age:'16'},
+            ]
+        },
+        methods: {},
+    })
+</script>
+</body>
+</html>

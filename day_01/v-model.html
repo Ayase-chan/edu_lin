@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" placeholder="请输入" v-model="msg">
+    <p>{{msg}}</p>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg:''
+        },
+        methods: {
+            change() {
+                this.msg = '默认输入'
+            }
+        },
+    })
+</script>
+</body>
+</html>

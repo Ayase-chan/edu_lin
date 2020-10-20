@@ -4,17 +4,36 @@
     <meta charset="UTF-8">
     <title>bind</title>
     <script src="../js/vue.min.js"></script>
+    <style>
+        .st{
+            border: 5px aquamarine solid;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
-    <img src="/head/1.bmp" alt="">
+    <img src="head/1.bmp" alt="英伟达" :class="{st: show}">
+    <hr>
+    <img v-bind:src="src" :alt="title" @click="change_src">
+    <button @click="add_css">change</button>
 </div>
 
 <script>
     new Vue({
         el: "#app",
-        data: {},
-        methods: {},
+        data: {
+            title:"nvidia",
+            show:false,
+            src:'head/11.ico',
+        },
+        methods: {
+            change_src() {
+                this.src = 'head/牢饭.bmp'
+            },
+            add_css() {
+                this.show = !this.show
+            }
+        },
     })
 </script>
 </body>
