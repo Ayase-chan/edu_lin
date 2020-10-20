@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试1</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+    {{ name }}
+    <h3>{{message}}</h3>
+    <h3>{{name+message}}</h3>
+</div>
+
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            name: "lin",
+            message: "今晚的第一个作业",
+        }
+    })
+</script>
+
+</body>
+</html>

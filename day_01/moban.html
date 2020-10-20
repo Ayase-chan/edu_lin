@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>data数据类型</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h3>{{msg}}</h3>
+        <h3>{{num * 20}}</h3>
+        <h3>{{obj}}</h3>
+        <h3>{{obj.name}}</h3>
+        <h3>{{obj.wheels}}</h3>
+        <p>{{arr}}</p>
+        <p>{{arr[0]}}</p>
+        <a href="">{{vehicle}}</a>
+        <br>
+        <a href="">{{vehicle[1].name}}</a>
+        <a href="">{{vehicle[1].weight}}</a>
+    </div>
+
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                msg: '我的名字是林强',
+                num: 60,
+                obj: {name: '车车', 'wheels':4, weight:'1t'},
+                arr: ['武当', '少林', '峨眉', '全真教', '地球'],
+                vehicle:[{name:'轿车',weight:'1t'}, {name:'灵车', weight:'很重'}, {name:'猴子车', weight:'不是很重'}]
+            },
+            methods:{},
+        })
+    </script>
+</body>
+</html>
