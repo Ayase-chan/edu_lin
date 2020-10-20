@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>留言板作业</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="msg" placeholder="请输入留言" @change="add">
+    <input type="button" value="发表" @click="add">
+    <ul>
+        <li v-for="(i, index) in list" :key="index">{{i}} <a href="javascript:;" @click="del(index)">删除</a></li>
+    </ul>
+    <p>留言数量：{{list.length}}</p>
+    <button @click="del_all" v-show="del_all_show">删除所有</button>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg:'',
+            list:['卢本伟牛逼', '卢本伟广场'],
+            del_all_show:true,
+        },
+        methods: {
+            add() {
+                let flag = this.msg
+                if (flag){
+                    this.list.unshift(this.msg)
+                    this.del_all_show = true
+                    this.msg = ''
+                }
+            },
+            del(index) {
+                this.list.splice(index, 1)
+                if (this.list.length === 0) {
+                    this.del_all_show = false
+                }
+            },
+            del_all() {
+                this.list = []
+                this.del_all_show = false
+            }
+        },
+    })
+</script>
+</body>
+</html>
