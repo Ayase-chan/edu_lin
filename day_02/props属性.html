@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>标题</title>
+    <script src="../js/vue.min.js"></script>
+    <style>
+        .red{
+            color: red;
+        }
+        .green{
+            color: aqua;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <com css="red" user="lin"></com>
+    <com css="green" user="fan"></com>
+</div>
+
+<script>
+    let com = {
+        template:`
+        <div>
+        <div :class="css">这是子组件</div>
+        </div>
+            `,
+        props:['css', 'user'],
+        created:function (){
+            console.log(this.user)
+        }
+    }
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        components:{
+            'com':com,
+        }
+    })
+</script>
+</body>
+</html>

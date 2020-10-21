@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>标题</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+    })
+</script>
+
+<script>
+    let user = {
+        name:"卢本伟",
+        act:function (){
+            console.log(this.name)
+        }
+    }
+    user.act()
+
+    let car = {
+        name:"车车",
+        act:function (){
+            setTimeout(
+                function (){
+                    console.log(this.name)
+                }
+            )
+        }
+    }
+    car.act()
+
+    let cart = {
+        name:"购物车车",
+        act:function (){
+            setTimeout(
+                () => console.log(this.name)
+            )
+        }
+    }
+    cart.act()
+</script>
+
+</body>
+</html>

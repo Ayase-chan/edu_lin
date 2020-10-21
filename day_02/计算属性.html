@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>标题</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3 @click="change">{{num}}</h3>
+    <p>十位： {{parseInt(num / 10)}} 个位： {{num % 10}}</p>
+    <hr>
+
+    <input type="number" v-model="shi" max="9" min="0">
+    <input type="number" v-model="ge" max="9" min="0">
+    结果：<h5>{{result}}</h5>
+    <hr>
+    <h3>{{make}}</h3>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            num: 66,
+            shi: '',
+            ge: '',
+            msg:''
+        },
+        methods: {
+            change(){
+                this.num--;
+            },
+        },
+        computed:{
+            result(){
+                return this.shi * 10 + +this.ge;
+            },
+            make() {
+                return '卢本伟牛逼'
+            }
+        }
+    })
+</script>
+</body>
+</html>

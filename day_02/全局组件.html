@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>全局组件</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <com></com>
+</div>
+
+<script>
+    let com = {
+        template:`
+        <div>第一个组件
+        <br>
+        <h3 @click="change">组件里的h3， {{name}}</h3>
+        <h3 @click="change">组件里的h3， {{who}}</h3>
+        </div>
+        `,
+        // 为组件里的标签绑定事件以后必须要在组件里定义该事件，要不然组件不会显示出来
+        data:function (){
+            return {
+                name:"卢本伟广场",
+                who:"卢本伟"
+            }
+        },
+        methods: {
+            change(){
+                console.log('卢本伟牛逼')
+            }
+        }
+    }
+    Vue.component("com", com)  // 这里第一个参数必须加引号，不然不会生效
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+    })
+</script>
+</body>
+</html>

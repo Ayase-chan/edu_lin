@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>子传父</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    父组件的值：{{name}}
+    <com @btn="change"></com>
+</div>
+
+<script>
+    let com = {
+        template:`
+        <div>
+        <div>子组件的值: {{test}}
+          <input type="text" v-model="sub_name">
+        <button @click="clb">上传到父组件</button></div>
+        </div>
+            `,
+        props:['test'],
+        data:function (){
+            return {
+                sub_name:''
+            }
+        },
+        methods: {
+            clb(){
+                // 向父组件触发一个自定义事件，参数1：事件名 参数2：要传递的值
+                this.$emit('btn', this.sub_name)
+            }
+        }
+    }
+    new Vue({
+        el: "#app",
+        data: {
+            name:''
+        },
+        methods: {
+            change(name){
+                this.name = name
+            }
+        },
+        components:{
+            'com':com,
+        }
+    })
+</script>
+</body>
+</html>
