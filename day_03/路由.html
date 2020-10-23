@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>路由</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3>这里是页头</h3>
+    <hr>
+    <router-link to="/com1">访问组件1</router-link>
+    <router-link to="/com2">访问组件2</router-link>
+
+    <router-view></router-view>
+
+</div>
+
+<script>
+    let com1 = {
+        template: `<div>
+             <p>组件1</p>
+            <img src="../day_01/head/11.ico" alt="无">
+</div>`
+    }
+
+    let com2 = {
+        template: `<div>
+            <p>组件2</p>
+            <img src="../day_01/head/牢饭.bmp" alt="无">
+</div>`
+    }
+
+    let myRouter = new VueRouter({
+        routes: [
+            {path:'/com1', component:com1},
+            {path:'/com2', component:com2},
+        ]
+    })
+
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        router:myRouter,
+    })
+</script>
+</body>
+</html>

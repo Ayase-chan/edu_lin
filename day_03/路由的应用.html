@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>路由的应用</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>系统欢迎页</h2>
+    <router-link to="/index">广场首页</router-link>
+    <router-link to="/user">优秀名单</router-link>
+    <hr>
+    <router-view></router-view>
+
+</div>
+
+<script>
+    let index = {
+        template:`<div>
+            <h4>这里是index页面</h4>
+            <h3>欢迎来到卢本伟广场</h3>
+</div>`
+    }
+    let user = {
+        template:`<div>
+            <h3>29杀列表</h3>
+        <table border="1" cellspacing="0">
+            <tr>
+            <td>ID</td>
+            <td>姓名</td>
+            <td>生日</td>
+            <td>操作</td>
+            </tr>
+            <tr v-for="user in users" >
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.bir}}</td>
+            <td>删除 | 更新</td>
+            </tr>
+      </table>
+</div>`,
+        data () {
+            return {
+                users:[
+                    {'id':1, 'name':'林强', 'bir':'2004-10-22'},
+                    {'id':2, 'name':'樊璟', 'bir':'1990-6-6'},
+                    {'id':3, 'name':'王超', 'bir':'2002-10-1'},
+                ]
+            }
+        },
+    }
+    let myRouter = new VueRouter({
+        routes:[
+            {path:'/index', component: index},
+            {path:'/user', component: user},
+            // {path:'/', redirect:'/index'},
+            // {path:'/*', redirect:'/index'},
+        ]
+    })
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        router:myRouter,
+    })
+</script>
+</body>
+</html>

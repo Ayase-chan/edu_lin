@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>路由传参</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <router-view></router-view>
+</div>
+
+<script>
+    let com1 = {
+        template: `
+        <div>
+        <p>这里是组件1</p>
+        <router-link to="/com?id=1&name=lin">查看组件2的这一页</router-link>
+</div>`
+    }
+    let com = {
+        template: `
+        <div>
+        <p>这里是组件2，组件一传过来的值是{{$route.query.id}}</p>
+        <p>这里是组件2，组件一传过来的值是{{$route.query.name}}</p>
+</div>`
+    }
+    let myRouter = new VueRouter({
+        routes: [
+            {path: '/com1', component: com1},
+            {path: '/com', component: com},
+            {path: '/', redirect: '/com1'},
+        ]
+    })
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        router:myRouter,
+    })
+</script>
+</body>
+</html>
