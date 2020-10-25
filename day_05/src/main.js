@@ -4,6 +4,8 @@ import Vue from 'vue'
 import App from './App'
 
 Vue.config.productionTip = false
+// 全局样式在这里导入
+import './assets/style.css'
 
 /* eslint-disable no-new */
 new Vue({
