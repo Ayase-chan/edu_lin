@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>js跳转传参</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <router-view></router-view>
+</div>
+
+<script>
+    let com1 = {
+        template: `
+          <div>
+          这是组件1
+          <button @click="jump">跳转到用户页面</button>
+          </div>`,
+        methods: {
+            jump() {
+                this.$router.push({path: '/com2?id=4'})
+                // this.$router.push({path: "/com2/1"})
+            }
+        }
+    }
+    let com2 = {
+        template: `<div>这是组件2：接收组件1传递的参数——>{{$route.query.id}} <hr>
+            这是组件2：接收组件1的动态路由参数——>: {{$route.params.id}}
+            </div>`,
+    }
+    let myRouter = new VueRouter({
+        routes: [
+            {path: '/com1', component: com1},
+            {path: '/com2', component: com2},
+            // {path: '/com2/:id', component: com2},
+            {path: '/', redirect: '/com1'}
+        ]
+    })
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        router: myRouter
+    })
+</script>
+</body>
+</html>

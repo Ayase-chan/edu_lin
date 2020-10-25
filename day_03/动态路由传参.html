@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>标题</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <router-view></router-view>
+</div>
+
+<script>
+    let com1 = {
+        template:`<div>
+            这是组件1
+            <router-link to="/com2/1/lin">access com2</router-link>
+</div>`
+    }
+    let com2 = {
+        template: `<div>
+            这是组件2：接收组件1传递的id——>：{{$route.params.id}}
+            <hr>
+            这是组件1传递的用户名——>：{{$route.params.name}}
+</div>`,
+    }
+
+    let myRouter = new VueRouter({
+        routes:[
+            {path:"/com1", component: com1},
+            {path:"/com2/:id/:name", component: com2},
+            {path:'/', redirect: "/com1"}
+        ]
+    })
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        router: myRouter
+    })
+</script>
+</body>
+</html>
