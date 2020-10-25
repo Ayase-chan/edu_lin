@@ -55,12 +55,14 @@ export default {
   },
   methods: {
     add() {
+      let b = 0
       if(this.name && this.bir && this.content){
-        let b = this.users.length + 1
-        // for (let i=0;i<this.users.length;i++){
-        //   a = b
-        // }
-        let a = {id: b, name: this.name, bir: this.bir, content: this.content}
+        // let b = this.users.length + 1
+        for (let i=0;i<this.users.length;i++){
+          b = b > this.users[i].id ? b :this.users[i].id
+
+        }
+        let a = {id: b+1, name: this.name, bir: this.bir, content: this.content}
         this.users.push(a)
         let c = JSON.stringify(this.users)
         localStorage.setItem('data', c)
