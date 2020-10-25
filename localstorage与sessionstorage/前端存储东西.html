@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="sc">
+<head>
+    <meta charset="UTF-8">
+    <title>前端存储数据</title>
+</head>
+<body>
+
+<script>
+    // localStorage.name = '武崇刚'
+    // console.log(localStorage.name)
+    // localStorage.removeItem('name')
+    // console.log(localStorage.name)
+    // localStorage['dsb'] = '武崇刚'
+    // localStorage.setItem('楼上', '是傻逼')
+    // for (let n=0;n<localStorage.length;n++){
+    //     console.log(n,localStorage.key(n),localStorage.getItem(localStorage.key(n)))
+    // }
+
+</script>
+
+
+<script>
+    // localStorage存对象：
+    let container = localStorage
+    // container.number = 18;
+    // container.name = '林';
+    // console.log(typeof container.number)
+    // console.log(typeof container.name)
+    // container.clear()
+    let person = {
+        id: 233,
+        name: "lin",
+        age:18,
+    }
+    // container.setItem('p', person)
+    // console.log(typeof container.getItem('p'));
+    let a = JSON.stringify(person)
+    container.setItem('person', a)
+    console.log(container['person']);
+    let b = container['person']
+    let c = JSON.parse(b)
+    console.log(c.name);
+</script>
+</body>
+</html>
