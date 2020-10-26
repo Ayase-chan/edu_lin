@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>vuex的使用</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vuex.3.0.1.js"></script>
+</head>
+<body>
+<div id="app">
+    <first></first>
+    <second></second>
+</div>
+
+<script>
+    let first = {
+        template:`<div>
+            这是第一个组件
+            <button @click="add">点击加一</button>
+</div>`,
+        methods:{
+            add(){
+                this.$store.commit("num_add")
+            }
+        }
+    }
+    let second = {
+        template:`<div>
+            这是第二个组件
+            <span>{{$store.state.number}}</span>
+</div>`,
+    }
+    let myStore = new Vuex.Store({
+        state:{
+            number: 3,
+        },
+        mutations:{
+            num_add:function (state){
+                if (state.number < 10){
+                    state.number++;
+                }
+            }
+        }
+    })
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        components:{
+            first:first,
+            second:second,
+        },
+        store:myStore
+    })
+</script>
+</body>
+</html>

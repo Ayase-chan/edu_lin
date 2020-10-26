@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>案例</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vuex.3.0.1.js"></script>
+</head>
+<body>
+<div id="app">
+    <first></first>
+    <second></second>
+</div>
+
+<script>
+    let first = {
+        template:`<div>
+            这是第一个组件
+            <button @click="clickIt">按钮</button>
+</div>`,
+        methods:{
+            clickIt(){
+                this.$store.commit("editUser", {name:'lin',pwd:'0000'})
+            }
+        }
+    }
+    let second = {
+        template:`<div>
+            这是第二个组件
+            <span>{{$store.state.user}}</span>
+</div>`,
+    }
+    let myStore = new Vuex.Store({
+        state:{
+            user: {name:'fan',pwd:'000124'},
+        },
+        mutations:{
+            editUser:function (state, user){
+                state.user.name = user['name']
+                state.user.pwd = user['pwd']
+            }
+        }
+    })
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        components:{
+            first:first,
+            second:second,
+        },
+        store:myStore
+    })
+</script>
+</body>
+</html>

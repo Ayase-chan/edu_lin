@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>getters的使用</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vuex.3.0.1.js"></script>
+</head>
+<body>
+<div id="app">
+    <first></first>
+    <br>
+    <second></second>
+</div>
+
+<script>
+    let first = {
+        template:`<div>
+            这是第一个组件
+            <button @click="clickIt">按钮</button>
+</div>`,
+        methods:{
+            clickIt(){
+                this.$store.commit('numPlus')
+            }
+        }
+    }
+    let second = {
+        template:`<div>
+            这是第二个组件
+            <span>{{$store.state.num}}</span><br>
+            <span>{{$store.getters.reverseNum}}</span>
+</div>`,
+    }
+    let myStore = new Vuex.Store({
+        state:{
+            num:2,
+        },
+        mutations:{
+            numPlus(state){
+                state.num ++;
+            }
+        },
+        getters:{
+            reverseNum(state) {
+                return 0-state.num;
+            }
+        }
+    })
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        components:{
+            first:first,
+            second:second,
+        },
+        store:myStore
+    })
+</script>
+</body>
+</html>

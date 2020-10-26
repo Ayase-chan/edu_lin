@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>getters案例</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vuex.3.0.1.js"></script>
+</head>
+<body>
+<div id="app">
+    <first></first>
+    <second></second>
+</div>
+
+<script>
+    let first = {
+        template:`<div><h4>组件1：</h4>
+            <button @click="add">按钮</button>
+</div>`,
+        methods:{
+            add(){
+                this.$store.commit('add_num', 100);
+            }
+        }
+    }
+
+    let second = {
+        template:`<div>
+            这是第二个组件：
+            {{$store.getters.result}}
+</div>`,
+    }
+    let myStore = new Vuex.Store({
+        state:{
+            numList:[232,54]
+        },
+        mutations:{
+            add_num(state,a){
+                state.numList.push(a)
+            }
+        },
+        getters:{
+            result: function (state){
+                let a = 0
+                for (let n of state.numList){
+                    a += n
+                }
+                return a
+            }
+        }
+    })
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        components:{
+            first:first,
+            second:second,
+        },
+        store:myStore,
+    })
+</script>
+</body>
+</html>
