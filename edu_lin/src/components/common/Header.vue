@@ -6,20 +6,36 @@
           <router-link to="/"><img src="/static/image/logo.png" alt=""></router-link>
         </div>
         <ul class="nav full-left">
-          <li v-for="(item, index) in top_nav_list" :key="index"><span><a @href="item.link">{{ item.title }}</a></span></li>
-
+          <li v-for="(nav, index) in nav_list" :key="index">
+            <span v-if="nav.is_site"><a :href="nav.link">{{ nav.title }}</a></span>
+            <span v-else><router-link :to="nav.link">{{ nav.title }}</router-link></span>
+          </li>
         </ul>
-        <div class="login-bar full-right">
+        <!--       用户登陆     -->
+        <div class="login-bar full-right" v-if="token">
+          <div class="shop-cart full-left">
+            <img src="/static/image/cart.svg" alt="">
+            <span><router-link to="/cart">{{this.$store.state.cart_length}}购物车</router-link></span>
+          </div>
+          <div class="login-box full-left">
+            <router-link to="/login">个人中心</router-link>
+            &nbsp;|&nbsp;
+            <span @click="logout">退出登陆</span>
+          </div>
+        </div>
+        <!--         用户未登录信息       -->
+        <div class="login-bar full-right" v-else>
           <div class="shop-cart full-left">
             <img src="/static/image/cart.svg" alt="">
             <span><router-link to="/cart">购物车</router-link></span>
           </div>
           <div class="login-box full-left">
-            <span>登录</span>
+            <router-link to="/login">登录</router-link>
             &nbsp;|&nbsp;
-            <span>注册</span>
+            <router-link to="/register">注册</router-link>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -30,19 +46,38 @@ export default {
   name: "Header",
   data() {
     return {
-      top_nav_list: []
+      nav_list: [],
+      token: "",
     }
   },
-  methods:{
-    get_top(){
-      this.$axios.get(this.$settings.HOST + "home/navigator_top/").then(response=>{
-        this.top_nav_list = response.data;
+  methods: {
+    // 获取所有导航栏
+    get_all_nav() {
+      this.$axios.get(this.$settings.HOST + "home/navigator_top/").then(res => {
+        console.log();
+        this.nav_list = res.data;
       })
+    },
+    // 获取用户登陆信息
+    get_user() {
+      if (sessionStorage.token){
+        this.token = sessionStorage.token;
+      }
+      else if (localStorage.token){
+        this.token = localStorage.token;
+      }
+    },
+    // 退出登录
+    logout(){
+      sessionStorage.removeItem('token');
+      localStorage.removeItem('token')
+      this.token = sessionStorage.token;
     }
   },
   created() {
-    this.get_top();
-  }
+    this.get_all_nav()
+    this.get_user()
+  },
 
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <ul>
-      <li v-for="item in bot_nav_list">{{ item.title }}</li>
+      <li v-for="item in bot_nav_list" :href="item.link">{{ item.title }}</li>
     </ul>
   </div>
 </template>
